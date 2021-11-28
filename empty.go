@@ -1,9 +1,5 @@
 package StringUtils
 
-import (
-	"errors"
-)
-
 // IsEmpty Checks if a string is empty ("").
 //  StringUtils.isEmpty("")        = true
 //  StringUtils.isEmpty(" ")       = false
@@ -31,7 +27,7 @@ func IsNotEmpty(s string) bool {
 //  StringUtils.isAllEmpty("abc", "cba") = false
 func IsAllEmpty(ss ...string) (bool, error) {
 	if len(ss) == 0 {
-		return true, errors.New("haven't arguments to check")
+		return true, ErrNoArguments
 	}
 	for _, s := range ss {
 		if IsNotEmpty(s) {
@@ -62,7 +58,7 @@ func IsAllNotEmpty(ss ...string) (b bool, e error) {
 //  StringUtils.IsAnyEmpty("abc", "cba") = false
 func IsAnyEmpty(ss ...string) (bool, error) {
 	if len(ss) == 0 {
-		return true, errors.New("haven't arguments to check")
+		return true, ErrNoArguments
 	}
 	for _, s := range ss {
 		if IsEmpty(s) {
@@ -104,14 +100,14 @@ func DefaultIfEmpty(s string, d string) string {
 //  StringUtils.FirstNonEmpty("abc", "cba") = "abc"
 func FirstNonEmpty(ss ...string) (string, error) {
 	if len(ss) == 0 {
-		return "", errors.New("haven't arguments to check")
+		return "", ErrNoArguments
 	}
 	for _, s := range ss {
 		if IsNotEmpty(s) {
 			return s, nil
 		}
 	}
-	return "", errors.New("haven't arguments which is not empty")
+	return "", ErrArrIsEmpty
 }
 
 // GetIfEmpty Returns either the passed in s, or if the s is empty, the value supplied by f.

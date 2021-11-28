@@ -13,7 +13,7 @@ func TestIsBlank(t *testing.T) {
 	}{
 		{"empty", args{""}, true},
 		{"\\x09\\x0A\\x0B\\x0C\\x0D\\x20", args{"\x09\x0A\x0B\x0C\x0D\x20"}, true},
-		{"\\x85\\xA0", args{string([]rune{'\x85', '\xA0'})}, true}, //TODO: WTF! "\x85" = 65533 but '\x85' is 133
+		{"\\x85\\xA0", args{string([]rune{'\x85', '\xA0'})}, true}, //WTF! "\x85" = 65533 but '\x85' is 133
 		{"space\\t\\n\\v\\f\\r", args{" \t\n\v\f\r"}, true},
 		{"\\u0009\\u000A\\u000B\\u000C\\u000D", args{"\u0009\u000a\u000b\u000c\u000d"}, true},
 		{"\\u001C\\u001D\\u001E\\u001F", args{"\u001C\u001D\u001E\u001F"}, true},
@@ -43,7 +43,7 @@ func TestIsNotBlank(t *testing.T) {
 	}{
 		{"empty", args{""}, false},
 		{"\\x09\\x0A\\x0B\\x0C\\x0D\\x20", args{"\x09\x0A\x0B\x0C\x0D\x20"}, false},
-		{"\\x85\\xA0", args{string([]rune{'\x85', '\xA0'})}, false}, //TODO: WTF! "\x85" = 65533 but '\x85' is 133
+		{"\\x85\\xA0", args{string([]rune{'\x85', '\xA0'})}, false}, //WTF! "\x85" = 65533 but '\x85' is 133
 		{"space\\t\\n\\v\\f\\r", args{" \t\n\v\f\r"}, false},
 		{"\\u0009\\u000A\\u000B\\u000C\\u000D", args{"\u0009\u000A\u000B\u000C\u000D"}, false},
 		{"\\u001C\\u001D\\u001E\\u001F", args{"\u001C\u001D\u001E\u001F"}, false},
@@ -76,7 +76,7 @@ func TestIsAllBlank(t *testing.T) {
 		{"[empty]", args{[]string{""}}, true, false},
 		{"[empty,\\x09,\\x0a,\\x0b,\\x0c,\\x0d,\\x20]",
 			args{[]string{"", "\x09", "\x0a", "\x0b", "\x0c", "\x0d", "\x20"}}, true, false},
-		{"[\\x85\\xA0]", args{[]string{string([]rune{'\x85', '\xA0'})}}, true, false}, //TODO: WTF! "\x85" = 65533 but '\x85' is 133
+		{"[\\x85\\xA0]", args{[]string{string([]rune{'\x85', '\xA0'})}}, true, false}, //WTF! "\x85" = 65533 but '\x85' is 133
 		{"[empty,space,\\t,\\n,\\v,\\f,\\r]",
 			args{[]string{"", " ", "\t", "\n", "\v", "\f", "\r"}}, true, false},
 		{"[empty,\\u0009,\\u000a,\\u000b,\\u000c,\\u000d]",
@@ -118,7 +118,7 @@ func TestIsAllNotBlank(t *testing.T) {
 		{"[empty]", args{[]string{""}}, false, false},
 		{"[empty,\\x09,\\x0A,\\x0B,\\x0C,\\x0D,\\x20]",
 			args{[]string{"", "\x09", "\x0A", "\x0B", "\x0C", "\x0D", "\x20"}}, false, false},
-		{"[\\x85\\xA0]", args{[]string{string([]rune{'\x85', '\xA0'})}}, false, false}, //TODO: WTF! "\x85" = 65533 but '\x85' is 133
+		{"[\\x85\\xA0]", args{[]string{string([]rune{'\x85', '\xA0'})}}, false, false}, //WTF! "\x85" = 65533 but '\x85' is 133
 		{"[empty,space,\\t,\\n,\\v,\\f,\\r]",
 			args{[]string{"", " ", "\t", "\n", "\v", "\f", "\r"}}, false, false},
 		{"[empty,\\u0009,\\u000A,\\u000B,\\u000C,\\u000D]",
@@ -160,7 +160,7 @@ func TestIsAnyBlank(t *testing.T) {
 		{"[empty]", args{[]string{""}}, true, false},
 		{"[empty,\\x09,\\x0A,\\x0B,\\x0C,\\x0D,\\x20]",
 			args{[]string{"", "\x09", "\x0A", "\x0B", "\x0C", "\x0D", "\x20"}}, true, false},
-		{"[\\x85\\xA0]", args{[]string{string([]rune{'\x85', '\xA0'})}}, true, false}, //TODO: WTF! "\x85" = 65533 but '\x85' is 133
+		{"[\\x85\\xA0]", args{[]string{string([]rune{'\x85', '\xA0'})}}, true, false}, //WTF! "\x85" = 65533 but '\x85' is 133
 		{"[empty,space,\\t,\\n,\\v,\\f,\\r]",
 			args{[]string{"", " ", "\t", "\n", "\v", "\f", "\r"}}, true, false},
 		{"[empty,\\u0009,\\u000A,\\u000B,\\u000C,\\u000D]",
@@ -202,7 +202,7 @@ func TestIsNoneBlank(t *testing.T) {
 		{"[empty]", args{[]string{""}}, false, false},
 		{"[empty,\\x09,\\x0A,\\x0B,\\x0C,\\x0D,\\x20]",
 			args{[]string{"", "\x09", "\x0A", "\x0B", "\x0C", "\x0D", "\x20"}}, false, false},
-		{"[\\x85\\xA0]", args{[]string{string([]rune{'\x85', '\xA0'})}}, false, false}, //TODO: WTF! "\x85" = 65533 but '\x85' is 133
+		{"[\\x85\\xA0]", args{[]string{string([]rune{'\x85', '\xA0'})}}, false, false}, //WTF! "\x85" = 65533 but '\x85' is 133
 		{"[empty,space,\\t,\\n,\\v,\\f,\\r]",
 			args{[]string{"", " ", "\t", "\n", "\v", "\f", "\r"}}, false, false},
 		{"[empty,\\u0009,\\u000A,\\u000B,\\u000C,\\u000D]",
@@ -243,7 +243,7 @@ func TestDefaultIfBlank(t *testing.T) {
 		{"[empty,empty]", args{"", ""}, ""},
 		{"[empty,abc]", args{"", "abc"}, "abc"},
 		{"[\\x09\\x0A\\x0B\\x0C\\x0D\\x20,abc]", args{"\x09\x0A\x0B\x0C\x0D\x20", "abc"}, "abc"},
-		{"[\\x85\\xA0,acb]", args{string([]rune{'\x85', '\xA0'}), "abc"}, "abc"}, //TODO: WTF! "\x85" = 65533 but '\x85' is 133
+		{"[\\x85\\xA0,acb]", args{string([]rune{'\x85', '\xA0'}), "abc"}, "abc"}, //WTF! "\x85" = 65533 but '\x85' is 133
 		{"[space\\t\\n\\v\\f\\r,abc]", args{" \t\n\v\f\r", "abc"}, "abc"},
 		{"[\\u0009\\u000A\\u000B\\u000C\\u000D,abc]", args{"\u0009\u000A\u000B\u000C\u000D", "abc"}, "abc"},
 		{"[\\u001C\\u001D\\u001E\\u001F,abc]", args{"\u001C\u001D\u001E\u001F", "abc"}, "abc"},
@@ -276,7 +276,7 @@ func TestFirstNonBlank(t *testing.T) {
 		{"[empty]", args{[]string{""}}, "", true},
 		{"[empty,\\x09,\\x0A,\\x0B,\\x0C,\\x0D,\\x20,\\x00]",
 			args{[]string{"", "\x09", "\x0A", "\x0B", "\x0C", "\x0D", "\x20", "\x00"}}, "\x00", false},
-		{"[\\x85\\xA0\\x00]", args{[]string{string([]rune{'\x85', '\xA0'}), "\x00"}}, "\x00", false}, //TODO: WTF! "\x85" = 65533 but '\x85' is 133
+		{"[\\x85\\xA0\\x00]", args{[]string{string([]rune{'\x85', '\xA0'}), "\x00"}}, "\x00", false}, //WTF! "\x85" = 65533 but '\x85' is 133
 		{"[empty,space,\\t,\\n,\\v,\\f,\\r]",
 			args{[]string{"", " ", "\t", "\n", "\v", "\f", "\r", "\x00"}}, "\x00", false},
 		{"[empty,\\u0009,\\u000A,\\u000B,\\u000C,\\u000D,\\x00]",
@@ -317,7 +317,7 @@ func TestGetIfBlank(t *testing.T) {
 		{"[empty, abc]", args{"", func() string { return "abc" }}, "abc"},
 		{"[\\x09\\x0A\\x0B\\x0C\\x0D\\x20]",
 			args{"\x09\x0A\x0B\x0C\x0D\x20", func() string { return "abc" }}, "abc"},
-		{"\\x85\\xA0", args{string([]rune{'\x85', '\xA0'}), func() string { return "abc" }}, "abc"}, //TODO: WTF! "\x85" = 65533 but '\x85' is 133
+		{"\\x85\\xA0", args{string([]rune{'\x85', '\xA0'}), func() string { return "abc" }}, "abc"}, //WTF! "\x85" = 65533 but '\x85' is 133
 		{"[space\\t\\n\\v\\f\\r]",
 			args{" \t\n\v\f\r", func() string { return "abc" }}, "abc"},
 		{"[\\u0009\\u000A\\u000B\\u000C\\u000D]",

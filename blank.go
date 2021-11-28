@@ -1,7 +1,6 @@
 package StringUtils
 
 import (
-	"errors"
 	"unicode"
 )
 
@@ -54,7 +53,7 @@ func IsNotBlank(s string) bool {
 //  StringUtils.isAllBlank("abc", "cba") = false
 func IsAllBlank(ss ...string) (bool, error) {
 	if len(ss) == 0 {
-		return true, errors.New("haven't arguments to check")
+		return true, ErrNoArguments
 	}
 	for _, s := range ss {
 		if IsNotBlank(s) {
@@ -85,7 +84,7 @@ func IsAllNotBlank(ss ...string) (b bool, e error) {
 //  StringUtils.IsAnyBlank("abc", "cba") = false
 func IsAnyBlank(ss ...string) (bool, error) {
 	if len(ss) == 0 {
-		return true, errors.New("haven't arguments to check")
+		return true, ErrNoArguments
 	}
 	for _, s := range ss {
 		if IsBlank(s) {
@@ -127,14 +126,14 @@ func DefaultIfBlank(s string, d string) string {
 //  StringUtils.FirstNonBlank("abc", "cba") = "abc"
 func FirstNonBlank(ss ...string) (string, error) {
 	if len(ss) == 0 {
-		return "", errors.New("haven't arguments to check")
+		return "", ErrNoArguments
 	}
 	for _, s := range ss {
 		if IsNotBlank(s) {
 			return s, nil
 		}
 	}
-	return "", errors.New("haven't arguments which is not Blank")
+	return "", ErrArrIsBlank
 }
 
 // GetIfBlank Returns either the passed in s, or if the s is empty or whitespace only, the value supplied by f.
