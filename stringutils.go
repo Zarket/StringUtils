@@ -51,7 +51,7 @@ func IsAllEmpty(ss ...string) (bool, error) {
 	return true, nil
 }
 
-// IsNotAllEmpty Checks if all the strings are not empty ("").
+// IsNotAllEmpty Checks if not all the strings are empty ("").
 //  stringutils.IsNotAllEmpty()             = false, error
 //  stringutils.IsNotAllEmpty("")           = false
 //  stringutils.IsNotAllEmpty("", "abc")    = true
@@ -61,6 +61,17 @@ func IsAllEmpty(ss ...string) (bool, error) {
 func IsNotAllEmpty(ss ...string) (b bool, e error) {
 	b, e = IsAllEmpty(ss...)
 	return !b, e
+}
+
+// IsAnyNotEmpty Checks if any the strings are not empty ("").
+//  stringutils.IsAnyNotEmpty()             = false, error
+//  stringutils.IsAnyNotEmpty("")           = false
+//  stringutils.IsAnyNotEmpty("", "abc")    = true
+//  stringutils.IsAnyNotEmpty("abc", "")    = true
+//  stringutils.IsAnyNotEmpty(" ", "abc")   = true
+//  stringutils.IsAnyNotEmpty("abc", "cba") = true
+func IsAnyNotEmpty(ss ...string) (b bool, e error) {
+	return IsNotAllEmpty(ss...)
 }
 
 // IsAnyEmpty Checks if any the strings are empty ("").
@@ -194,7 +205,7 @@ func IsAllBlank(ss ...string) (bool, error) {
 	return true, nil
 }
 
-// IsNotAllBlank Checks if all the strings are empty or whitespace only.
+// IsNotAllBlank Checks if not all the strings are empty or whitespace only.
 //  stringutils.IsNotAllBlank()             = false, error
 //  stringutils.IsNotAllBlank("", " ")      = false
 //  stringutils.IsNotAllBlank("", "abc")    = true
@@ -204,6 +215,17 @@ func IsAllBlank(ss ...string) (bool, error) {
 func IsNotAllBlank(ss ...string) (b bool, e error) {
 	b, e = IsAllBlank(ss...)
 	return !b, e
+}
+
+// IsAnyNotBlank Checks if any the strings are not empty or whitespace only.
+//  stringutils.IsAnyNotBlank()             = false, error
+//  stringutils.IsAnyNotBlank("", " ")      = false
+//  stringutils.IsAnyNotBlank("", "abc")    = true
+//  stringutils.IsAnyNotBlank("abc", "")    = true
+//  stringutils.IsAnyNotBlank(" ", "abc")   = true
+//  stringutils.IsAnyNotBlank("abc", "cba") = true
+func IsAnyNotBlank(ss ...string) (b bool, e error) {
+	return IsNotAllBlank(ss...)
 }
 
 // IsAnyBlank Checks if any the strings are empty or whitespace only.
